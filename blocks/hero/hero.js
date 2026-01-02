@@ -21,7 +21,7 @@ export default function decorate(block) {
   const link = p.querySelector('a');
 
   // Collect all text nodes before the link (excluding picture)
-  const textNodes = nodes.filter(node => {
+  const textNodes = nodes.filter((node) => {
     if (node === picture) return false;
     if (node === link) return false;
     if (node.nodeType === Node.TEXT_NODE) return true;
@@ -31,7 +31,7 @@ export default function decorate(block) {
 
   // Get all text content before the link
   let textBeforeLink = '';
-  textNodes.forEach(node => {
+  textNodes.forEach((node) => {
     if (node.nodeType === Node.TEXT_NODE) {
       textBeforeLink += node.textContent;
     } else if (node.nodeName === 'BR') {
@@ -40,12 +40,13 @@ export default function decorate(block) {
   });
 
   // Split by line breaks and filter empty lines
-  const lines = textBeforeLink.split(/\n+/).map(line => line.trim()).filter(line => line);
+  const lines = textBeforeLink.split(/\n+/).map((line) => line.trim()).filter((line) => line);
 
   // First line is heading, rest is paragraph
   if (lines.length > 0) {
     const h4 = document.createElement('h4');
-    h4.textContent = lines[0];
+    const [firstLine] = lines;
+    h4.textContent = firstLine;
     cardWrapper.append(h4);
   }
 
