@@ -1,8 +1,7 @@
-/* ============================================
-   Hero Block - Mobile First Approach
-   ============================================ */
+/* Hero block layout aligned with the NSW full-image-banner reference. */
 
 :root {
+  --hero-content-height: 5rem;
   --hero-accent: #c41230;
   --hero-bg: #ffffff;
   --hero-border: #dcdcdc;
@@ -10,77 +9,108 @@
   --hero-subtext: #555555;
 }
 
-/* ============================================
-   Mobile Styles (Base - 0px and up)
-   ============================================ */
-
-.hero.block > .hero-wrapper {
-  position: relative;
-  overflow: hidden;
-  min-height: 50vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
+.hero-container {
+  padding: 0;
 }
 
-.hero.block > .hero-wrapper .hero-image {
+.hero-container .hero-wrapper {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  margin-bottom: var(--hero-content-height);
+}
+
+.hero.block {
+  display: grid;
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+}
+
+.hero__image {
+  grid-column: 1;
+  grid-row: 1;
+  height: 20.125rem;
+  width: 100%;
+  position: relative;
+}
+
+.hero__image p {
+  margin: 0;
+}
+
+.hero__image div,
+.hero__image .hero-banner-image {
+  height: 100%;
+}
+
+.hero__image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
   position: absolute;
   inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.hero.block > .hero-wrapper .hero-image img,
-.hero.block > .hero-wrapper .hero-image picture {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   display: block;
 }
 
-.hero.block > .hero-wrapper .hero-card {
-  position: relative;
+.hero__content {
+  display: grid;
+  gap: 1rem;
+  align-self: end;
+  grid-column: 1;
+  grid-row: 1;
+  padding: 1rem;
   z-index: 1;
-  width: calc(100% - 2rem);
-  max-width: 100%;
-  margin: 0 1rem 1.5rem 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  position: absolute;
+  width: 100%;
+  max-width: calc(100vw - 2rem);
+  transform: translateY(50%);
+}
+
+.hero__content a {
+  text-decoration: none;
+}
+
+.hero-card {
   background: var(--hero-bg);
   border: 1px solid var(--hero-border);
-  border-top: 5px solid var(--hero-accent);
-  padding: 1.5rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-top: 4px solid var(--hero-accent);
+  border-radius: 6px;
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
   text-align: left;
   box-sizing: border-box;
 }
 
-.hero.block > .hero-wrapper .hero-card h1,
-.hero.block > .hero-wrapper .hero-card h2,
-.hero.block > .hero-wrapper .hero-card h3,
-.hero.block > .hero-wrapper .hero-card h4 {
+.hero-card h1,
+.hero-card h2,
+.hero-card h3,
+.hero-card h4 {
   margin: 0 0 0.75rem;
-  font-size: 1.5rem;
-  line-height: 1.3;
+  font-size: 1.8125rem;
+  line-height: 1.2;
   color: var(--hero-text);
   font-weight: 600;
 }
 
-.hero.block > .hero-wrapper .hero-card p {
+.hero-card p {
   margin: 0 0 1rem;
   font-size: 1rem;
   line-height: 1.5;
   color: var(--hero-subtext);
 }
 
-.hero.block > .hero-wrapper .hero-card p:last-of-type {
+.hero-card p:last-of-type {
   margin-bottom: 0;
 }
 
-.hero.block > .hero-wrapper .hero-card a {
+.hero-card a {
   display: inline-block;
   background: var(--hero-accent);
-  color: #fff;
+  color: #ffffff;
   padding: 0.75rem 1.5rem;
   border-radius: 4px;
   text-decoration: none;
@@ -90,152 +120,48 @@
   margin-top: 0.5rem;
 }
 
-.hero.block > .hero-wrapper .hero-card a:hover,
-.hero.block > .hero-wrapper .hero-card a:focus {
+.hero-card a:hover,
+.hero-card a:focus {
   background-color: #a00e26;
   outline: 2px solid var(--hero-accent);
   outline-offset: 2px;
 }
 
-/* ============================================
-   Tablet Styles (768px and up)
-   ============================================ */
-
-@media (min-width: 48rem) {
-  .hero.block > .hero-wrapper {
-    min-height: 60vh;
-    align-items: flex-end;
-    justify-content: center;
-  }
-
-  .hero.block > .hero-wrapper .hero-card {
-    width: calc(100% - 4rem);
-    max-width: 32rem;
-    margin: 0 2rem;
-    padding: 2rem 2.5rem;
-  }
-
-  .hero.block > .hero-wrapper .hero-card h1,
-  .hero.block > .hero-wrapper .hero-card h2,
-  .hero.block > .hero-wrapper .hero-card h3,
-  .hero.block > .hero-wrapper .hero-card h4 {
-    font-size: 1.875rem;
-    margin-bottom: 1rem;
-  }
-
-  .hero.block > .hero-wrapper .hero-card p {
-    font-size: 1.0625rem;
-    margin-bottom: 1.25rem;
-  }
-
-  .hero.block > .hero-wrapper .hero-card a {
-    padding: 0.875rem 1.75rem;
-    font-size: 1.0625rem;
-  }
-}
-
-/* ============================================
-   Desktop Styles (992px and up)
-   ============================================ */
-
 @media (min-width: 62rem) {
-  .hero.block > .hero-wrapper {
+  .hero-container .hero-wrapper {
+    margin-bottom: 0;
+  }
+
+  .hero.block {
     display: grid;
     grid-template-columns: 1fr minmax(0, 1240px) 1fr;
-    min-height: 70vh;
-    align-items: center;
-    justify-items: end;
+    min-block-size: calc(15.6rem + 25vmin);
+    gap: 0;
   }
 
-  .hero.block > .hero-wrapper .hero-image {
+  .hero__image {
+    height: auto;
+    position: relative;
+    grid-row: 1 / 2;
     grid-column: 1 / -1;
-    grid-row: 1;
   }
 
-  .hero.block > .hero-wrapper .hero-card {
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: end;
-    align-self: center;
-    width: 50%;
+  .hero__content {
+    padding: 0;
+    grid-row: 1 / 2;
+    grid-column: 2 / 3;
     max-width: 35.5rem;
-    margin: 0;
-    padding: 2.5rem 3rem;
-    border-top-width: 6px;
-  }
-
-  .hero.block > .hero-wrapper .hero-card h1,
-  .hero.block > .hero-wrapper .hero-card h2,
-  .hero.block > .hero-wrapper .hero-card h3,
-  .hero.block > .hero-wrapper .hero-card h4 {
-    font-size: 2rem;
-    line-height: 1.2;
-    margin-bottom: 1.25rem;
-  }
-
-  .hero.block > .hero-wrapper .hero-card p {
-    font-size: 1.125rem;
-    line-height: 1.6;
-    margin-bottom: 1.75rem;
-  }
-
-  .hero.block > .hero-wrapper .hero-card a {
-    padding: 1rem 2.25rem;
-    font-size: 1.125rem;
+    align-content: center;
+    margin: 7.6875rem 0;
+    position: relative;
+    left: 45%;
+    width: 50%;
+    transform: none;
   }
 }
-
-/* ============================================
-   Large Desktop Styles (1200px and up)
-   ============================================ */
 
 @media (min-width: 75rem) {
-  .hero.block > .hero-wrapper {
-    min-height: 75vh;
-  }
-
-  .hero.block > .hero-wrapper .hero-card {
-    padding: 3rem 3.5rem;
-    max-width: 38rem;
-  }
-
-  .hero.block > .hero-wrapper .hero-card h1,
-  .hero.block > .hero-wrapper .hero-card h2,
-  .hero.block > .hero-wrapper .hero-card h3,
-  .hero.block > .hero-wrapper .hero-card h4 {
-    font-size: 2.25rem;
-  }
-}
-
-/* ============================================
-   Extra Wide Desktop Styles (1400px and up)
-   ============================================ */
-
-@media (min-width: 87.5rem) {
-  .hero.block > .hero-wrapper {
-    min-height: 80vh;
-  }
-
-  .hero.block > .hero-wrapper .hero-card {
-    padding: 3.5rem 4rem;
-    max-width: 42rem;
-  }
-
-  .hero.block > .hero-wrapper .hero-card h1,
-  .hero.block > .hero-wrapper .hero-card h2,
-  .hero.block > .hero-wrapper .hero-card h3,
-  .hero.block > .hero-wrapper .hero-card h4 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero.block > .hero-wrapper .hero-card p {
-    font-size: 1.25rem;
-    margin-bottom: 2rem;
-  }
-
-  .hero.block > .hero-wrapper .hero-card a {
-    padding: 1.125rem 2.5rem;
-    font-size: 1.25rem;
+  .hero__content {
+    left: 49%;
   }
 }
