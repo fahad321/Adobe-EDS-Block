@@ -41,15 +41,17 @@ export default function decorate(block) {
     .map((line) => line.trim())
     .filter((line) => line);
 
-  if (lines.length > 0) {
+  const [headingText, ...bodyLines] = lines;
+
+  if (headingText) {
     const heading = document.createElement('h4');
-    heading.textContent = lines[0];
+    heading.textContent = headingText;
     cardWrapper.append(heading);
   }
 
-  if (lines.length > 1) {
+  if (bodyLines.length > 0) {
     const para = document.createElement('p');
-    para.textContent = lines.slice(1).join(' ');
+    para.textContent = bodyLines.join(' ');
     cardWrapper.append(para);
   }
 
